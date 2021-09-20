@@ -47,10 +47,8 @@ function App() {
     try {
       if (requestParams.method == "get") {
         await axios.get(`${requestParams.url}`).then((res) => {
-          setData({
-            headers: res.headers,
-            data: res.data,
-          });
+          setData(res);
+          // console.log(data);
           setRequestParams(requestParams);
         });
       }
@@ -61,7 +59,7 @@ function App() {
     try {
       if (requestParams.method == "post") {
         await axios.post(`${requestParams.url}`).then((res) => {
-          setData(res.data);
+          setData(res);
           setRequestParams(requestParams);
         });
       }
@@ -72,7 +70,7 @@ function App() {
     try {
       if (requestParams.method == "put") {
         await axios.put(`${requestParams.url}`).then((res) => {
-          setData(res.data);
+          setData(res);
           setRequestParams(requestParams);
         });
       }
@@ -83,7 +81,7 @@ function App() {
     try {
       if (requestParams.method == "delete") {
         await axios.delete(`${requestParams.url}`).then((res) => {
-          setData(res.data);
+          setData(res);
           setRequestParams(requestParams);
         });
       }
