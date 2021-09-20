@@ -47,7 +47,10 @@ function App() {
     try {
       if (requestParams.method == "get") {
         await axios.get(`${requestParams.url}`).then((res) => {
-          setData(res.data);
+          setData({
+            headers: res.headers,
+            data: res.data,
+          });
           setRequestParams(requestParams);
         });
       }
