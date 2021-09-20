@@ -1,5 +1,19 @@
 # resty ✨
 
+# **Phase 2**
+
+- RESTy Phase 2: Retrieving User Input and Managing State
+
+* In phase 2, we will be receiving user input in preparation of connecting to live APIs, using the useState() hook in our functional components
+
+## **Deployment** on sandbox : 👇
+
+- https://codesandbox.io/s/vigilant-ramanujan-fdvz7?file=/src/index.js
+
+## branch name : **state**
+
+<br> <hr> <br>
+
 # Create React App
 
 - RESTy Phase 1: Begin work on the RESTy API testing application
