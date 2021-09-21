@@ -6,6 +6,10 @@ function Form(props) {
 
   const [methodSt, setMethodSt] = useState({});
 
+  // const [showText, setshowText] = useState(false);
+  const [textValue, setTextValue] = useState('');
+
+
     const handelMethods= async (e)=>{
      await setMethodSt(e.target.value);
       //  console.log(methodSt);
@@ -17,12 +21,21 @@ function Form(props) {
     const formData = {
       method: e.target.methods.value, 
       url: e.target.url.value,
-      info:e.target.info.value,
+      info:textValue,
     };
     //
     props.handleApiCall(formData);
   };
 
+  // const textAreaHedden = (e) => {
+  //   setshowText(false);
+  // };
+  // const textAreaShwo = (e) => {
+  //   setshowText(true);
+  // };
+  const handelText = (e) => {
+    setTextValue(e.target.value);
+  };
   return (
     <>
       <form onSubmit={handleSubmit}>
@@ -42,17 +55,21 @@ function Form(props) {
         {/* converted to lest  */}
         <select name="methods" className="methods"  onClick={handelMethods} >
        
-       <option value="get" id="get">GET</option>
-       <option value="post" id="post">POST</option>
-       <option value="put" id="put">PUT</option>
-       <option value="delete" id="delete">DELETE</option>
+       <option value="get" id="get" >GET</option>
+       <option value="post" id="post" >POST</option>
+       <option value="put" id="put" >PUT</option>
+       <option value="delete" id="delete" >DELETE</option>
 
         </select>
 
-        <label>
-          <span>INFO: </span>
-          <input name="info" type='text'  id='info' defaultValue='{ add your info here }' />
-        </label>
+        {(methodSt == 'post' ||methodSt == 'put'  )?  <label>
+          <span>Body: </span>
+          <input name="info" type='text'  id='info' defaultValue='' onChange={handelText} />
+        </label> : <div></div> }
+       
+
+       
+      
 
       </form>
     </>

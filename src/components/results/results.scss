@@ -1,0 +1,45 @@
+$backgroundColor: #f5f5f5;
+
+#Loding {
+  height: 2rem;
+  background: darken($backgroundColor, 60);
+  border-bottom: 1px solid #eee;
+  color: #eee;
+  padding: 0;
+  margin: 0;
+  ///
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+// #Loding-text {
+//   height: 50%;
+// }
+
+.titel {
+  height: 2rem;
+  background: darken($backgroundColor, 60);
+  //   border-bottom: 1px solid #eee;
+  color: #eee;
+  padding: 0;
+  margin: 0;
+
+  font-size: 20px;
+
+  ///
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+pre {
+  display: block;
+  font-family: monospace;
+  white-space: pre;
+  margin: 0 0;
+}
