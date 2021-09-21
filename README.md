@@ -1,5 +1,19 @@
 # resty ✨
 
+# **Phase 3**
+
+- RESTy Phase 3: Connect RESTy with APIs, running live requests
+
+* In phase 3, we will be connecting RESTy to live APIs, fetching and displaying remote data. Our primary focus will be to service GET requests
+
+## **Deployment** on sandbox : 👇
+
+-
+
+## branch name : **effect-hook**
+
+<br> <hr> <br>
+
 # **Phase 2**
 
 - RESTy Phase 2: Retrieving User Input and Managing State

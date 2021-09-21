@@ -97,7 +97,7 @@ function App() {
       <Header />
       <div>Request Method: {requestParams.method}</div>
       <div>URL: {requestParams.url}</div>
-      <div>INFO : {requestParams.info}</div>
+      <div>Body : {requestParams.info}</div>
 
       <Form handleApiCall={callApi} />
       <Results data={data} />
