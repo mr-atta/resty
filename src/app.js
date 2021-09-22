@@ -1,5 +1,5 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./app.scss";
 
 // Let's talk about using index.js and some other name in the component folder
@@ -30,6 +30,58 @@ function App() {
   //   };
   // }
 
+  useEffect(() => {
+    const getData = async () => {
+      if (requestParams.url) {
+        try {
+          if (requestParams.method == "get") {
+            await axios.get(`${requestParams.url}`).then((res) => {
+              setData(res);
+              // console.log(data);
+              // setRequestParams(requestParams);
+            });
+          }
+        } catch (error) {
+          setData(error);
+        }
+
+        try {
+          if (requestParams.method == "post") {
+            await axios.post(`${requestParams.url}`).then((res) => {
+              setData(res);
+              // setRequestParams(requestParams);
+            });
+          }
+        } catch (error) {
+          setData(error);
+        }
+
+        try {
+          if (requestParams.method == "put") {
+            await axios.put(`${requestParams.url}`).then((res) => {
+              setData(res);
+              // setRequestParams(requestParams);
+            });
+          }
+        } catch (error) {
+          setData(error);
+        }
+
+        try {
+          if (requestParams.method == "delete") {
+            await axios.delete(`${requestParams.url}`).then((res) => {
+              setData(res);
+              // setRequestParams(requestParams);
+            });
+          }
+        } catch (error) {
+          setData(error);
+        }
+      }
+    };
+    getData();
+  }, [requestParams]);
+
   const callApi = async (requestParams) => {
     // // mock output
     // const data = {
@@ -44,52 +96,57 @@ function App() {
     // let str = JSON.stringify(obj, null, 2); // spacing level = 2
 
     console.log(requestParams.method);
-    try {
-      if (requestParams.method == "get") {
-        await axios.get(`${requestParams.url}`).then((res) => {
-          setData(res);
-          // console.log(data);
-          setRequestParams(requestParams);
-        });
-      }
-    } catch (error) {
-      setData(error);
-    }
 
-    try {
-      if (requestParams.method == "post") {
-        await axios.post(`${requestParams.url}`).then((res) => {
-          setData(res);
-          setRequestParams(requestParams);
-        });
-      }
-    } catch (error) {
-      setData(error);
-    }
+    setRequestParams(requestParams);
 
-    try {
-      if (requestParams.method == "put") {
-        await axios.put(`${requestParams.url}`).then((res) => {
-          setData(res);
-          setRequestParams(requestParams);
-        });
-      }
-    } catch (error) {
-      setData(error);
-    }
+    ////////////////////////////////////////////////////////////////
 
-    try {
-      if (requestParams.method == "delete") {
-        await axios.delete(`${requestParams.url}`).then((res) => {
-          setData(res);
-          setRequestParams(requestParams);
-        });
-      }
-    } catch (error) {
-      setData(error);
-    }
+    // try {
+    //   if (requestParams.method == "get") {
+    //     await axios.get(`${requestParams.url}`).then((res) => {
+    //       setData(res);
+    //       // console.log(data);
+    //       setRequestParams(requestParams);
+    //     });
+    //   }
+    // } catch (error) {
+    //   setData(error);
+    // }
 
-    //
+    // try {
+    //   if (requestParams.method == "post") {
+    //     await axios.post(`${requestParams.url}`).then((res) => {
+    //       setData(res);
+    //       setRequestParams(requestParams);
+    //     });
+    //   }
+    // } catch (error) {
+    //   setData(error);
+    // }
+
+    // try {
+    //   if (requestParams.method == "put") {
+    //     await axios.put(`${requestParams.url}`).then((res) => {
+    //       setData(res);
+    //       setRequestParams(requestParams);
+    //     });
+    //   }
+    // } catch (error) {
+    //   setData(error);
+    // }
+
+    // try {
+    //   if (requestParams.method == "delete") {
+    //     await axios.delete(`${requestParams.url}`).then((res) => {
+    //       setData(res);
+    //       setRequestParams(requestParams);
+    //     });
+    //   }
+    // } catch (error) {
+    //   setData(error);
+    // }
+
+    ////////////////////////////////////////////////////////////////
   };
 
   return (
