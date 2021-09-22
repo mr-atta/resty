@@ -1,5 +1,19 @@
 # resty ✨
 
+# **Phase 4**
+
+- RESTy Phase 4: Track History
+
+* In phase 4, we will be tracking every API call and storing it in history
+
+## **Deployment** on sandbox : 👇
+
+-
+
+## branch name : **reducer-hook**
+
+<br> <hr> <br>
+
 # **Phase 3**
 
 - RESTy Phase 3: Connect RESTy with APIs, running live requests
@@ -8,7 +22,7 @@
 
 ## **Deployment** on sandbox : 👇
 
--
+- [https://zdxxo.csb.app/](https://zdxxo.csb.app/)
 
 ## branch name : **effect-hook**
 
