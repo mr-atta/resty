@@ -1,5 +1,5 @@
 import React from "react";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useReducer } from "react";
 import "./app.scss";
 
 // Let's talk about using index.js and some other name in the component folder
@@ -15,20 +15,41 @@ import Header from "./components/header";
 import Footer from "./components/footer";
 import Form from "./components/form";
 import Results from "./components/results";
+import History from "./components/history/history";
+
+//
+const initialState = [];
+
+function reducer(history = initialState, action) {
+  switch (action.type) {
+    case "ADD_HISTORY":
+      history = [...history, action.payload];
+      return history;
+    default:
+      return history;
+  }
+}
+
+function action(requestParams, data) {
+  console.log("data................." + data);
+  return {
+    type: "ADD_HISTORY",
+    payload: {
+      method: requestParams.method,
+      url: requestParams.url,
+      info: requestParams.info,
+      data: data,
+    },
+  };
+}
+//
 
 function App() {
   //
   const [data, setData] = useState(null);
   const [requestParams, setRequestParams] = useState({});
+  const [history, dispatch] = useReducer(reducer, initialState);
   //
-
-  // constructor(props) {
-  //   super(props);
-  //   this.state = {
-  //     data: null,
-  //     requestParams: {},
-  //   };
-  // }
 
   useEffect(() => {
     const getData = async () => {
@@ -37,7 +58,16 @@ function App() {
           if (requestParams.method == "get") {
             await axios.get(`${requestParams.url}`).then((res) => {
               setData(res);
-              // console.log(data);
+
+              // setData(data); // re set the data
+
+              dispatch(action(requestParams, res));
+
+              //
+              console.log(res.data);
+              console.log(requestParams);
+              //
+
               // setRequestParams(requestParams);
             });
           }
@@ -77,77 +107,25 @@ function App() {
         } catch (error) {
           setData(error);
         }
+
+        //
       }
     };
     getData();
   }, [requestParams]);
 
   const callApi = async (requestParams) => {
-    // // mock output
-    // const data = {
-    //   count: 2,
-    //   results: [
-    //     { name: "fake thing 1", url: "http://fakethings.com/1" },
-    //     { name: "fake thing 2", url: "http://fakethings.com/2" },
-    //   ],
-    // };
-    // this.setState({ data, requestParams });
+    //
 
-    // let str = JSON.stringify(obj, null, 2); // spacing level = 2
-
-    console.log(requestParams.method);
+    // console.log(requestParams.method);
 
     setRequestParams(requestParams);
 
-    ////////////////////////////////////////////////////////////////
-
-    // try {
-    //   if (requestParams.method == "get") {
-    //     await axios.get(`${requestParams.url}`).then((res) => {
-    //       setData(res);
-    //       // console.log(data);
-    //       setRequestParams(requestParams);
-    //     });
-    //   }
-    // } catch (error) {
-    //   setData(error);
-    // }
-
-    // try {
-    //   if (requestParams.method == "post") {
-    //     await axios.post(`${requestParams.url}`).then((res) => {
-    //       setData(res);
-    //       setRequestParams(requestParams);
-    //     });
-    //   }
-    // } catch (error) {
-    //   setData(error);
-    // }
-
-    // try {
-    //   if (requestParams.method == "put") {
-    //     await axios.put(`${requestParams.url}`).then((res) => {
-    //       setData(res);
-    //       setRequestParams(requestParams);
-    //     });
-    //   }
-    // } catch (error) {
-    //   setData(error);
-    // }
-
-    // try {
-    //   if (requestParams.method == "delete") {
-    //     await axios.delete(`${requestParams.url}`).then((res) => {
-    //       setData(res);
-    //       setRequestParams(requestParams);
-    //     });
-    //   }
-    // } catch (error) {
-    //   setData(error);
-    // }
-
-    ////////////////////////////////////////////////////////////////
+    // console.log(data);
   };
+  function historyfun(result) {
+    setData(result);
+  }
 
   return (
     <React.Fragment>
@@ -157,6 +135,10 @@ function App() {
       <div>Body : {requestParams.info}</div>
 
       <Form handleApiCall={callApi} />
+
+      <div>The History </div>
+      <History historyfun={historyfun} history={history} />
+
       <Results data={data} />
       <Footer />
     </React.Fragment>

@@ -1,27 +1,25 @@
 import React from "react";
-import { useState } from 'react';
+import { useState } from "react";
 import "./form.scss";
 
 function Form(props) {
-
   const [methodSt, setMethodSt] = useState({});
 
   // const [showText, setshowText] = useState(false);
-  const [textValue, setTextValue] = useState('');
+  const [textValue, setTextValue] = useState("");
 
-
-    const handelMethods= async (e)=>{
-     await setMethodSt(e.target.value);
-      //  console.log(methodSt);
-    } 
+  const handelMethods = async (e) => {
+    await setMethodSt(e.target.value);
+    //  console.log(methodSt);
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
     const formData = {
-      method: e.target.methods.value, 
+      method: e.target.methods.value,
       url: e.target.url.value,
-      info:textValue,
+      info: textValue,
     };
     //
     props.handleApiCall(formData);
@@ -53,24 +51,35 @@ function Form(props) {
         </label> */}
 
         {/* converted to lest  */}
-        <select name="methods" className="methods"  onClick={handelMethods} >
-       
-       <option value="get" id="get" >GET</option>
-       <option value="post" id="post" >POST</option>
-       <option value="put" id="put" >PUT</option>
-       <option value="delete" id="delete" >DELETE</option>
-
+        <select name="methods" className="methods" onClick={handelMethods}>
+          <option value="get" id="get">
+            GET
+          </option>
+          <option value="post" id="post">
+            POST
+          </option>
+          <option value="put" id="put">
+            PUT
+          </option>
+          <option value="delete" id="delete">
+            DELETE
+          </option>
         </select>
 
-        {(methodSt == 'post' ||methodSt == 'put'  )?  <label>
-          <span>Body: </span>
-          <input name="info" type='text'  id='info' defaultValue='' onChange={handelText} />
-        </label> : <div></div> }
-       
-
-       
-      
-
+        {methodSt == "post" || methodSt == "put" ? (
+          <label>
+            <span>Body: </span>
+            <input
+              name="info"
+              type="text"
+              id="info"
+              defaultValue=""
+              onChange={handelText}
+            />
+          </label>
+        ) : (
+          <div></div>
+        )}
       </form>
     </>
   );
